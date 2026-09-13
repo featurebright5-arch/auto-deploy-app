@@ -1,0 +1,21 @@
+name: Deploy to Railway
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+      
+      - name: Deploy to Railway
+        run: railway up --service auto-deploy-app
+        env:
+          RAILWAY_TOKEN: 72690f0e-5f5d-4bc1-a68e-6ed761b8411f
